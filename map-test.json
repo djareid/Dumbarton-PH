@@ -1,77 +1,137 @@
 <!DOCTYPE html>
-<meta charset="utf-8">
+<html>
+<head>
+<meta charset="utf-8" />
+<title>Animate a line</title>
+<meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+<script src="https://api.mapbox.com/mapbox-gl-js/v1.11.1/mapbox-gl.js"></script>
+<link href="https://api.mapbox.com/mapbox-gl-js/v1.11.1/mapbox-gl.css" rel="stylesheet" />
+<style>
+	body { margin: 0; padding: 0; }
+	#map { position: absolute; top: 0; bottom: 0; width: 100%; }
+</style>
+</head>
 <body>
-  <script src="http://d3js.org/d3.v3.min.js"></script>
-  <script src="http://d3js.org/topojson.v1.min.js"></script>
-  <!-- I recommend you host this file on your own, since this will change without warning -->
-  <script src="http://datamaps.github.io/scripts/datamaps.world.min.js?v=1"></script>
-  <h2>Datamaps Playground</h2>
-  <p><a href="http://datamaps.github.io/">DataMaps Project Homepage</a></p>
-  <div id="container1" style="position: relative; width: 80%; max-height: 450px;"></div>
+<style>
+button {
+position: absolute;
+margin: 20px;
+}
  
-     
-     <script>
-       //basic map config with custom fills, mercator projection
-      var map = new Datamap({
-        scope: 'world',
-        element: document.getElementById('container1'),
-        projection: 'mercator',
-        height: 500,
-        fills: {
-          defaultFill: '#f0af0a',
-          lt50: 'rgba(0,244,244,0.9)',
-          gt50: 'red'
-        },
-        
-        data: {
-          USA: {fillKey: 'lt50' },
-          RUS: {fillKey: 'lt50' },
-          CAN: {fillKey: 'lt50' },
-          BRA: {fillKey: 'gt50' },
-          ARG: {fillKey: 'gt50'},
-          COL: {fillKey: 'gt50' },
-          AUS: {fillKey: 'gt50' },
-          ZAF: {fillKey: 'gt50' },
-          MAD: {fillKey: 'gt50' }       
-        }
-      })
-      
-      
-      //sample of the arc plugin
-      map.arc([
-       {
-        origin: {
-            latitude: 40.639722,
-            longitude: 73.778889
-        },
-        destination: {
-            latitude: 37.618889,
-            longitude: -122.375
-        }
-      },
-      {
-          origin: {
-              latitude: 30.194444,
-              longitude: -97.67
-          },
-          destination: {
-              latitude: 25.793333,
-              longitude: -0.290556
-          }
-      }
-      ], {strokeWidth: 2});
-       
-      
-       //bubbles, custom popup on hover template
-     map.bubbles([
-       {name: 'Hot', latitude: 21.32, longitude: 5.32, radius: 10, fillKey: 'gt50'},
-       {name: 'Chilly', latitude: -25.32, longitude: 120.32, radius: 18, fillKey: 'lt50'},
-       {name: 'Hot again', latitude: 21.32, longitude: -84.32, radius: 8, fillKey: 'gt50'},
-
-     ], {
-       popupTemplate: function(geo, data) {
-         return "<div class='hoverinfo'>It is " + data.name + "</div>";
-       }
-     });
-     </script>
+#pause::after {
+content: 'Pause';
+}
+ 
+#pause.pause::after {
+content: 'Play';
+}
+</style>
+<div id="map"></div>
+<button id="pause"></button>
+<script>
+	// TO MAKE THE MAP APPEAR YOU MUST
+	// ADD YOUR ACCESS TOKEN FROM
+	// https://account.mapbox.com
+	mapboxgl.accessToken = '<your access token here>';
+var map = new mapboxgl.Map({
+container: 'map',
+style: 'mapbox://styles/mapbox/streets-v11',
+center: [0, 0],
+zoom: 0.5
+});
+ 
+// Create a GeoJSON source with an empty lineString.
+var geojson = {
+'type': 'FeatureCollection',
+'features': [
+{
+'type': 'Feature',
+'geometry': {
+'type': 'LineString',
+'coordinates': [[0, 0]]
+}
+}
+]
+};
+ 
+var speedFactor = 30; // number of frames per longitude degree
+var animation; // to store and cancel the animation
+var startTime = 0;
+var progress = 0; // progress = timestamp - startTime
+var resetTime = false; // indicator of whether time reset is needed for the animation
+var pauseButton = document.getElementById('pause');
+ 
+map.on('load', function() {
+map.addSource('line', {
+'type': 'geojson',
+'data': geojson
+});
+ 
+// add the line which will be modified in the animation
+map.addLayer({
+'id': 'line-animation',
+'type': 'line',
+'source': 'line',
+'layout': {
+'line-cap': 'round',
+'line-join': 'round'
+},
+'paint': {
+'line-color': '#ed6498',
+'line-width': 5,
+'line-opacity': 0.8
+}
+});
+ 
+startTime = performance.now();
+ 
+animateLine();
+ 
+// click the button to pause or play
+pauseButton.addEventListener('click', function() {
+pauseButton.classList.toggle('pause');
+if (pauseButton.classList.contains('pause')) {
+cancelAnimationFrame(animation);
+} else {
+resetTime = true;
+animateLine();
+}
+});
+ 
+// reset startTime and progress once the tab loses or gains focus
+// requestAnimationFrame also pauses on hidden tabs by default
+document.addEventListener('visibilitychange', function() {
+resetTime = true;
+});
+ 
+// animated in a circle as a sine wave along the map.
+function animateLine(timestamp) {
+if (resetTime) {
+// resume previous progress
+startTime = performance.now() - progress;
+resetTime = false;
+} else {
+progress = timestamp - startTime;
+}
+ 
+// restart if it finishes a loop
+if (progress > speedFactor * 360) {
+startTime = timestamp;
+geojson.features[0].geometry.coordinates = [];
+} else {
+var x = progress / speedFactor;
+// draw a sine wave with some math.
+var y = Math.sin((x * Math.PI) / 90) * 40;
+// append new coordinates to the lineString
+geojson.features[0].geometry.coordinates.push([x, y]);
+// then update the map
+map.getSource('line').setData(geojson);
+}
+// Request the next frame of the animation.
+animation = requestAnimationFrame(animateLine);
+}
+});
+</script>
+ 
 </body>
+</html>
