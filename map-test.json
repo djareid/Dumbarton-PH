@@ -1,4 +1,5 @@
-var map = new Datamap({
+{ 
+        var map = new Datamap({
         scope: 'world',
         element: document.getElementById('projection_map'),
         projection: 'orthographic',
@@ -43,4 +44,4 @@ var map = new Datamap({
         greatArc: true,
         animationSpeed: 2000
       });
-          
+}
