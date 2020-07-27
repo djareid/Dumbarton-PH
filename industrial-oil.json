@@ -1,0 +1,264 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "label": "Blida",
+        "marker-color": "#1b4f0d",
+        "marker-size": "small",
+        "marker-symbol": ""
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.8289794921874996,
+          36.47651531482943
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "label": "Yunnan",
+        "marker-color": "#1b4f0d",
+        "marker-size": "small",
+        "marker-symbol": ""
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          101.18408203124999,
+          24.397133017391052
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "label": "Fes",
+        "marker-color": "#1b4f0d",
+        "marker-size": "small",
+        "marker-symbol": ""
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -5.015602111816406,
+          34.03672867489511
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "label": "Marrakech",
+        "marker-color": "#1b4f0d",
+        "marker-size": "small"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -7.99083709716797,
+          31.628244544421086
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "label": "Meknes",
+        "marker-color": "#1b4f0d",
+        "marker-size": "small"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -5.531787872314453,
+          33.898774401390725
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "label": "Bani Sweif",
+        "marker-color": "#1b4f0d",
+        "marker-size": "small"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          31.09577178955078,
+          29.073574818115592
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "label": "Fayoum",
+        "marker-color": "#1b4f0d",
+        "marker-size": "small"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          30.83759307861328,
+          29.307656998416473
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "label": "Ituri",
+        "marker-color": "#1b4f0d",
+        "marker-size": "small"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          29.718017578125004,
+          1.9551868337565232
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "label": "Nanyuki",
+        "marker-color": "#1b4f0d",
+        "marker-size": "small"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          37.07465171813965,
+          0.01407623276856043
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "label": "Lunga Lunga",
+        "marker-color": "#1b4f0d",
+        "marker-size": "small"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          39.111328125,
+          -4.510714125698484
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "label": "Kelilalina",
+        "marker-color": "#1b4f0d",
+        "marker-size": "small"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          46.318359375,
+          -18.020527657852327
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "label": "Fandriana",
+        "marker-color": "#1b4f0d",
+        "marker-size": "small"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          47.37579345703125,
+          -20.240294334653225
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "label": "Saint-Paul",
+        "marker-color": "#1b4f0d",
+        "marker-size": "small"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          55.27702331542969,
+          -21.00086847527048
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "marker-color": "#1b4f0d",
+        "marker-size": "small",
+        "marker-symbol": "",
+        "label": "Crimea"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.530029296875,
+          45.45627757127799
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "label": "Nilgiris",
+        "marker-color": "#1b4f0d",
+        "marker-size": "small"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          76.7724609375,
+          11.43695521614319
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "label": "Palni Hills",
+        "marker-color": "#1b4f0d",
+        "marker-size": "small"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.49755859375,
+          10.250059987303016
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "label": "Uttar Pradesh",
+        "marker-color": "#1b4f0d",
+        "marker-size": "small"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.37597656249999,
+          27.449790329784214
+        ]
+      }
+    }
+  ]
+}
